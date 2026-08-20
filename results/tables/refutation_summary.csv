@@ -1,0 +1,5 @@
+test_name,original_effect,refuted_effect,p_value,conclusion
+Placebo Treatment,45.88,1.52,0.3945,Aprovado (Efeito cai a zero)
+Random Common Cause,45.88,45.84,0.9993,Aprovado (Efeito estável)
+Data Subset (80%),45.88,45.68,0.9957,Aprovado (Efeito estável)
+Unobserved Confounder (Gamma=3.00),45.88,39.65,0.02,Aprovado (Robusto até Gamma=3.00)

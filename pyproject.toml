@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "industrial-causal-policy"
+version = "1.0.0"
+description = "Benchmark de Inferência Causal para Avaliação de Impacto de Políticas Industriais"
+authors = [{ name = "Pietro Esteves" }]
+readme = "README.md"
+requires-python = ">=3.10"
+
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "W", "I"]
+
+[tool.black]
+line-length = 88
+target-version = ['py310', 'py311', 'py312']
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

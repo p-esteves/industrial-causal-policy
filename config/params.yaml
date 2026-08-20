@@ -1,0 +1,90 @@
+# Project Configuration — Industrial Causal Policy Benchmark
+# Target: Centro de Inteligência Industrial
+
+project:
+  name: industrial-causal-policy
+  version: 1.0.0
+  seed: 42
+  state: CE
+  state_code: 23
+
+paths:
+  data_raw: data/raw
+  data_processed: data/processed
+  data_geojson: data/geojson
+  analytical_dataset: data/processed/analytical_dataset.csv
+  synthetic_control_panel: data/processed/synthetic_control_panel.csv
+  ceara_geojson: data/geojson/ceara_municipalities.json
+  figures_dir: results/figures
+  tables_dir: results/tables
+  report_path: results/report.md
+
+dataset:
+  start_year: 2020
+  end_year: 2025
+  treatment_col: fdi_incentive
+  outcome_col: net_job_gain
+  treatment_label: "Incentivo Fiscal FDI (ICMS)"
+  outcome_label: "Variação Líquida de Empregos Formais Industriais"
+  covariates:
+    - pib_per_capita
+    - population
+    - idhm
+    - ind_emp_share
+    - n_establishments
+    - avg_industrial_wage
+    - dist_capital_km
+    - senai_presence
+    - urbanization_rate
+    - tax_revenue_per_capita
+  categorical_covariates:
+    - mesoregion
+    - main_cnae_sector
+
+causal_models:
+  cv_folds: 5
+  confidence_level: 0.95
+  
+  ipw:
+    n_bootstrap: 500
+    classifier_n_estimators: 150
+    classifier_max_depth: 4
+
+  linear_dml:
+    cv: 5
+    mc_iters: 5
+
+  causal_forest:
+    n_estimators: 1000
+    min_samples_leaf: 5
+    max_depth: null
+    cv: 5
+    mc_iters: 5
+    honest: true
+
+  dr_learner:
+    cv: 5
+
+  x_learner:
+    cv: 5
+
+  synthetic_control:
+    treatment_year: 2021
+    treated_unit: "Ceará"
+
+refutation:
+  n_placebo_simulations: 100
+  sample_fraction: 0.8
+  unobserved_confounder_effect_range: [-0.2, 0.2]
+
+clustering:
+  n_clusters: 3
+  cluster_labels:
+    0: "Neutro / Baixo Impacto"
+    1: "Médio Impacto"
+    2: "Alto Impacto"
+
+viz:
+  dpi: 300
+  style: dark
+  color_palette: "viridis"

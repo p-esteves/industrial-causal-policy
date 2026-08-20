@@ -1,0 +1,6 @@
+method,ate,ci_lower,ci_upper,stderr,p_value,rmse_cate
+IPW (Inverse Probability Weighting),45.47,37.26,59.24,5.72,0.0,23.18
+Linear DML (Double Machine Learning),66.85,14.7,118.99,26.61,0.012,210.05
+Causal Forest DML,95.27,15.86,174.67,40.51,0.0187,88.22
+DR Learner (Doubly Robust),60.43,48.43,72.43,6.12,0.0,347.98
+"X-Learner (Künzel et al., 2019)",57.46,38.78,73.6,8.88,0.0,41.4

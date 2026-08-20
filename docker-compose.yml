@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  causal-benchmark:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: industrial-causal-policy:latest
+    container_name: industrial_causal_policy_app
+    volumes:
+      - ./results:/app/results
+      - ./data/processed:/app/data/processed
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: python main.py --step all
